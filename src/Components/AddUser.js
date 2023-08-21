@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import classes from "./AddUser.module.css";
 
 import Card from "./UI/Card";
+import Button from "./UI/Button";
+import classes from "./AddUser.module.css";
 
 const AddUser = (props) => {
   const [inputName, setInputName] = useState("");
@@ -44,8 +45,8 @@ const AddUser = (props) => {
         <label htmlFor="age">User Age</label>
         <input id="age" value={inputAge} onChange={ageChangeHandler}></input>
 
-        <button onClick={clearHandler}>Clear</button>
-        <button type="submit">Add</button>
+        <Button onClick={clearHandler}>Clear</Button>
+        <Button type="submit">Add</Button>
       </form>
     </Card>
   );
