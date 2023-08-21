@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddUser from "./Components/AddUser";
 import UsersList from "./Components/UsersList";
 import ErrorModal from "./Components/ErrorModal";
@@ -19,9 +19,16 @@ function App() {
     },
   ];
 
+  const [userInput, setUserInput] = useState(userList);
+
+  const addUserHandler = (userInput) => {
+    setUserInput(userInput);
+  };
+  console.log(userInput);
+
   return (
     <div>
-      <AddUser />
+      <AddUser onAddBtnPress={addUserHandler} />
       <UsersList />
       <ErrorModal />
     </div>
