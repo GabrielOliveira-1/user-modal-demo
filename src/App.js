@@ -6,14 +6,17 @@ import ErrorModal from "./Components/ErrorModal";
 function App() {
   const userList = [
     {
+      id: 1,
       userName: "Gabriel",
       userAge: 26,
     },
     {
+      id: 2,
       userName: "Jessica",
       userAge: 27,
     },
     {
+      id: 3,
       userName: "Test334",
       userAge: "180",
     },
@@ -22,14 +25,15 @@ function App() {
   const [userInput, setUserInput] = useState(userList);
 
   const addUserHandler = (userInput) => {
-    setUserInput(userInput);
+    setUserInput((prevInput) => {
+      return [userInput, ...prevInput];
+    });
   };
-  console.log(userInput);
 
   return (
     <div>
       <AddUser onAddBtnPress={addUserHandler} />
-      <UsersList />
+      <UsersList usersData={userInput} />
       <ErrorModal />
     </div>
   );

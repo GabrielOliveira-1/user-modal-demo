@@ -1,10 +1,21 @@
 import "./UsersList.css";
 
-const UsersList = () => {
+const UsersList = (props) => {
+  if (props.usersData.length === 0) {
+    return <p>No users found.</p>;
+  }
+
   return (
-    <div>
-      <p>test</p>
-    </div>
+    <ul>
+      {props.usersData.map((user) => (
+        <>
+          <li>Name: {user.userName}</li>
+          <li>
+            Age: {user.userName} is {user.userAge} years old.
+          </li>
+        </>
+      ))}
+    </ul>
   );
 };
 
