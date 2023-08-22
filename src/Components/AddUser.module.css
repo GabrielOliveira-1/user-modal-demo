@@ -24,3 +24,12 @@
   outline: none;
   border-color: #4f005f;
 }
+
+.input input.invalid {
+  font: inherit;
+  display: block;
+  width: 100%;
+  border: 1px solid red;
+  padding: 0.15rem;
+  margin-bottom: 0.5rem;
+}
