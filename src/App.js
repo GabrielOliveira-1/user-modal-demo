@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AddUser from "./Components/AddUser";
 import UsersList from "./Components/UsersList";
-import ErrorModal from "./Components/ErrorModal";
 
 function App() {
   const userList = [
@@ -12,8 +11,8 @@ function App() {
     },
     {
       id: 2,
-      userName: "Jessica",
-      userAge: 27,
+      userName: "Test667",
+      userAge: 250,
     },
     {
       id: 3,

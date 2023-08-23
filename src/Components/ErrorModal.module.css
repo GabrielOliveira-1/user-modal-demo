@@ -18,6 +18,9 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   background: #4f005f;
   padding: 1rem;
 }
