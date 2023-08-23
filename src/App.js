@@ -34,7 +34,6 @@ function App() {
     <div>
       <AddUser onAddBtnPress={addUserHandler} />
       <UsersList usersData={userInput} />
-      <ErrorModal />
     </div>
   );
 }

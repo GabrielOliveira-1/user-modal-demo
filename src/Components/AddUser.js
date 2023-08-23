@@ -3,27 +3,33 @@ import React, { useState } from "react";
 import Card from "./UI/Card";
 import Button from "./UI/Button";
 import classes from "./AddUser.module.css";
+import ErrorModal from "./ErrorModal";
 
 const AddUser = (props) => {
   const [inputName, setInputName] = useState("");
   const [inputAge, setInputAge] = useState("");
-  const [isValid, setIsValid] = useState(true);
 
   const nameChangeHandler = (e) => {
     setInputName(e.target.value);
   };
-
   const ageChangeHandler = (e) => {
     setInputAge(e.target.value);
   };
 
   const submitHandler = (e) => {
-    const userInput = {
-      userName: inputName,
-      userAge: inputAge,
-    };
-    props.onAddBtnPress(userInput);
-    clearHandler();
+    e.preventDefault();
+    if (inputName.trim().length === 0 || inputAge.trim().length === 0) return;
+    if (+inputAge <= 0) return;
+
+    if (inputName.trim().length > 0 && inputAge.trim().length > 0) {
+      const userInput = {
+        id: Math.random().toString(),
+        userName: inputName,
+        userAge: inputAge,
+      };
+      props.onAddBtnPress(userInput);
+      clearHandler();
+    }
   };
 
   const clearHandler = () => {
@@ -31,40 +37,27 @@ const AddUser = (props) => {
     setInputAge("");
   };
 
-  // inputName.trim().length && inputAge.trim().length > 0
-  //   ? setIsValid(true)
-  //   : setIsValid(false);
-
-  // if (inputName.trim().length && inputAge.trim().length > 0) {
-  //   setIsValid(true);
-  // } else {
-  //   setIsValid(false);
-  // }
-
   return (
-    <Card className={classes.input}>
-      <form onSubmit={submitHandler}>
-        <label htmlFor="username">User Name</label>
-        <input
-          className={`${!isValid && classes.invalid}`}
-          id="username"
-          type="text"
-          value={inputName}
-          onChange={nameChangeHandler}
-        ></input>
+    <div>
+      <ErrorModal title="Error ocurred" message="something wrong" />
+      <Card className={classes.input}>
+        <form onSubmit={submitHandler}>
+          <label htmlFor="username">User Name</label>
+          <input
+            id="username"
+            type="text"
+            value={inputName}
+            onChange={nameChangeHandler}
+          ></input>
 
-        <label htmlFor="age">User Age</label>
-        <input
-          className={`${!isValid && classes.invalid}`}
-          id="age"
-          value={inputAge}
-          onChange={ageChangeHandler}
-        ></input>
+          <label htmlFor="age">User Age</label>
+          <input id="age" value={inputAge} onChange={ageChangeHandler}></input>
 
-        <Button onClick={clearHandler}>Clear</Button>
-        <Button type="submit">Add</Button>
-      </form>
-    </Card>
+          <Button onClick={clearHandler}>Clear</Button>
+          <Button type="submit">Add</Button>
+        </form>
+      </Card>
+    </div>
   );
 };
 
